@@ -25,9 +25,9 @@ In order to push the use of the NanoKontrol some buttons are mapped to do differ
      * rewind, fastforward, stop, play and record all select a bank.
      * within a bank mode s,m & r buttons highlighted respresent further different states.
 
-    * Marker right -> Refresh state maps
-    * Marker left  -> ?
-    * Marker SET   -> Force all sync
+   * Marker right -> Refresh state maps
+   * Marker left  -> ?
+   * Marker SET   -> Force all sync
 
 What you assign the banks to is completely up to you. One example:
 
