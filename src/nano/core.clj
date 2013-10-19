@@ -1,8 +1,11 @@
 (ns nano.core
   (:require
-   [nano.stateful-device]
-   [nano.standalone]
+   [nano.timed]
    [nano.state-maps]
-   [nano.connect]
-   [nano.timed]))
+   [nano.stateful-device]
+   [nano.machine]
+   [nano.config]))
 
+(defn setup []
+  (nano.machine/register!)
+  (nano.config/setup!))
