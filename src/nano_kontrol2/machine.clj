@@ -5,7 +5,7 @@
    [overtone.studio.midi :as midi]
    [overtone.libs.event :as e]))
 
-(defn register! []
+(defn start-registering []
   (defonce nk-connected-rcvs (midi/midi-find-connected-receivers "nanoKONTROL2"))
   (defonce nk-connected-devs (midi/midi-find-connected-devices "nanoKONTROL2"))
   (defonce nk-stateful-devs (map nksd/stateful-nk nk-connected-devs))
@@ -52,12 +52,17 @@
                                               (:val m)))
                      ::update-state)
 
-  ;; Things To Do:
-  ;;
-  ;; * Save and load states
-  ;; * Switch between groups
-  ;; *
+      ;; Things To Do:
+      ;;
+      ;; * Save and load states
+      ;; * Switch between groups
+      ;; *
 
-  ;; To help debug:
-  ;;
-  (println :error (agent-error state-maps)))
+      ;; To help debug:
+      ;;
+      (println :error (agent-error state-maps)))
+
+(defn register! []
+  (if (seq (midi/midi-find-connected-devices "nanoKONTROL2"))
+    (start-registering)
+    (throw (Exception. "No nanoKONTROL2 connected"))))

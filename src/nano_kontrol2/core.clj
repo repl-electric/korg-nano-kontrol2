@@ -12,9 +12,9 @@
 
 (def banks
   {:master btn/record
-   :m64 btn/play
-   :m128 btn/stop
-   :riffs btn/fast-forward
+   :m64    btn/play
+   :m128   btn/stop
+   :riffs  btn/fast-forward
    :synths btn/rewind})
 
 (defn start!

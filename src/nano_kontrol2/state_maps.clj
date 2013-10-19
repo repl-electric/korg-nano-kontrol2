@@ -550,11 +550,11 @@
    record row of buttons."
   [id]
   (cond
-   (= :record id) btn/record
-   (= :play id) btn/play
-   (= :stop id) btn/stop
+   (= :record id)       btn/record
+   (= :play id)         btn/play
+   (= :stop id)         btn/stop
    (= :fast-forward id) btn/fast-forward
-   (= :rewind id) btn/rewind))
+   (= :rewind id)       btn/rewind))
 
 (defn- bank-button?
   [id]
@@ -659,10 +659,6 @@
               res))
           p)
     @p))
-
-;; (defn update-states-range
-;;   [state-a nk k v]
-;;   (when-not (button? k)))
 
 (defn switch-state
   "Switch nk to state matching b state-k"
