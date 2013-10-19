@@ -1,6 +1,6 @@
 # Korg NanoKontrol2 with Overtone
 
-Using NanoKontrol2 with Overtone.
+__EXPERIMENTAL__ : Using NanoKontrol2 with Overtone.
 
 To be clear all credit and hard work is that of @samaaron and @meta-ex.
 I extracted this out of the Ignite project: https://github.com/meta-ex/ignite. 
