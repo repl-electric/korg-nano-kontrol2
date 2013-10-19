@@ -3,7 +3,7 @@
 __EXPERIMENTAL__ : Using NanoKontrol2 with Overtone.
 
 To be clear all credit and hard work is that of @samaaron and @meta-ex.
-I extracted this out of the Ignite project: https://github.com/meta-ex/ignite. 
+I extracted this out of the Ignite project: https://github.com/meta-ex/ignite.
 
 ## Device Setup
 
@@ -20,8 +20,8 @@ You will need to setup your NanoKontrol2 such that software can control all the 
 ## Software setup
 
 ```clojure
-(require '[nano.core])
-(nano.core/setup!)
+(require '[nano-kontrol2.core :as nk2])
+(nk2/start!)
 ```
 
 ## Control
@@ -46,6 +46,6 @@ What you assign the banks to is completely up to you. One example:
     :master 0    ; record button (bank 0)
     :monome64 2  ; play button (bank 2)
     :monome128 4 ; stop button (bank 4)
-    :riffs 8     ; fast-forward button (bank 8) 
+    :riffs 8     ; fast-forward button (bank 8)
     :synths 16)) ; rewind button (bank 16)
 ```

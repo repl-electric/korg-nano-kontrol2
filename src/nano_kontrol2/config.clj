@@ -1,10 +1,10 @@
-(ns nano.config
+(ns nano-kontrol2.config
   (:use
    [overtone.live])
   (:require
-   [nano.stateful-device :as nksd]
-   [nano.state-maps :as nksm]
-   [nano.machine :as nk-conn]
+   [nano-kontrol2.stateful-device :as nksd]
+   [nano-kontrol2.state-maps :as nksm]
+   [nano-kontrol2.machine :as nk-conn]
    [overtone.libs.event :as e]
    [overtone.osc :as osc]
    [clojure.edn :as edn]))

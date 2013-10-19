@@ -1,7 +1,7 @@
-(ns nano.state-maps
+(ns nano-kontrol2.state-maps
   (:use
-   [nano.stateful-device]
-   [nano.timed]
+   [nano-kontrol2.stateful-device]
+   [nano-kontrol2.timed]
    [overtone.algo.fn :only [cycle-fn]]
    [overtone.algo.scaling :only [scale-range]]
    [overtone.helpers.doc :only [fs]]

@@ -1,7 +1,9 @@
  (ns nano.timed
-  (:use [overtone.helpers.ref])
-  (:require [overtone.music.time :as time]
-            [overtone.sc.protocols :as protocols]))
+  (:use
+   [overtone.helpers.ref])
+  (:require
+   [overtone.music.time :as time]
+   [overtone.sc.protocols :as protocols]))
 
 (defonce running-patterns* (atom #{}))
 

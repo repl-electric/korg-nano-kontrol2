@@ -1,4 +1,4 @@
-(ns nano.stateful-device
+(ns nano-kontrol2.stateful-device
   (:use
    [overtone.libs.event]
    [overtone.music.time :only [periodic stop-player]]

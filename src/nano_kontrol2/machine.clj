@@ -1,7 +1,7 @@
-(ns nano.machine
+(ns nano-kontrol2.machine
   (:require
-   [nano.stateful-device :as nksd]
-   [nano.state-maps :as nksm]
+   [nano-kontrol2.stateful-device :as nksd]
+   [nano-kontrol2.state-maps :as nksm]
    [overtone.studio.midi :as midi]
    [overtone.libs.event :as e]))
 
