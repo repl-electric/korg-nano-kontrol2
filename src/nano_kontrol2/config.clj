@@ -9,16 +9,6 @@
    [overtone.osc :as osc]
    [clojure.edn :as edn]))
 
-(defn nk-bank
-  "Returns the nk bank number for the specified bank key"
-  [bank-k]
-  (case bank-k
-    :master 0
-    :m64 2
-    :m128 4
-    :riffs 8
-    :synths 16))
-
 (defonce mixer-init-state (merge (nksd/nk-state-map 0)
                                  {:slider7 0}
                                  {:pot2 1}
@@ -31,7 +21,12 @@
                                        {:slider7 1
                                         :slider6 0}))
 
-(defn setup! [cfg]
+(defn setup! [cfg banks]
+
+  (defn nk-bank
+    "Returns the nk bank number for the specified bank key"
+    [bank-k]
+    (banks bank-k))
 
   (defonce __ADD-STATE-MAPS__
     ;; Adds a new set of state-maps to the initial nk state-maps. This
