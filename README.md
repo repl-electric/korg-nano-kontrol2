@@ -28,7 +28,14 @@ You will need to setup your NanoKontrol2 such that software can control all the 
    :riffs  {:s0 mixer-init-state :s1 mixer-init-state :m0 mixer-init-state :m1 mixer-init-state}
    :master {:s7 mixer-init-state :m7 mixer-init-state :r7 mixer-init-state}})
 
-(nk2/start! cfg)
+(def banks
+  {:master 0
+   :m64 2
+   :m128 4
+   :riffs 8
+   :synths 16})
+
+(nk2/start! cfg banks)
 ```
 
 ## Control
