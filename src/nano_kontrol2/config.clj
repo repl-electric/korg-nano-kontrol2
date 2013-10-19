@@ -3,11 +3,11 @@
    [overtone.live])
   (:require
    [nano-kontrol2.stateful-device :as nksd]
-   [nano-kontrol2.state-maps :as nksm]
-   [nano-kontrol2.machine :as nk-conn]
-   [overtone.libs.event :as e]
-   [overtone.osc :as osc]
-   [clojure.edn :as edn]))
+   [nano-kontrol2.state-maps      :as nksm]
+   [nano-kontrol2.machine         :as nk-conn]
+   [overtone.libs.event           :as e]
+   [overtone.osc                  :as osc]
+   [clojure.edn                   :as edn]))
 
 (defonce mixer-init-state (merge (nksd/nk-state-map 0)
                                  {:slider7 0}

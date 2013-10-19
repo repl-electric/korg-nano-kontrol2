@@ -7,7 +7,9 @@
    [overtone.helpers.doc :only [fs]]
    [overtone.helpers.ref :only [swap-returning-prev!]]
    [overtone.libs.event :only [event]])
-  (:require [overtone.sc.protocols :as protocols]))
+  (:require
+   [overtone.sc.protocols :as protocols]
+   [nano-kontrol2.buttons :as btn]))
 
 (defn- sm-b-k->state
   "Get the state for a specific key and bank"
@@ -297,11 +299,11 @@
   [nk bank]
   (nk-rec-leds-off nk)
   (cond
-   (= 0 bank)  (led-on nk :record)
-   (= 2 bank)  (led-on nk :play)
-   (= 4 bank)  (led-on nk :stop)
-   (= 8 bank)  (led-on nk :fast-forward)
-   (= 16 bank) (led-on nk :rewind)))
+   (= btn/record bank)        (led-on nk :record)
+   (= btn/play bank)          (led-on nk :play)
+   (= btn/stop bank)          (led-on nk :stop)
+   (= btn/fast-forward bank)  (led-on nk :fast-forward)
+   (= btn/rewind bank)        (led-on nk :rewind)))
 
 (defn kill-all-flashers*
   "Kill all the flashers on a specific nk"
@@ -548,11 +550,11 @@
    record row of buttons."
   [id]
   (cond
-   (= :record id) 0
-   (= :play id) 2
-   (= :stop id) 4
-   (= :fast-forward id) 8
-   (= :rewind id) 16))
+   (= :record id) btn/record
+   (= :play id) btn/play
+   (= :stop id) btn/stop
+   (= :fast-forward id) btn/fast-forward
+   (= :rewind id) btn/rewind))
 
 (defn- bank-button?
   [id]
@@ -687,30 +689,6 @@
                (<= 0 k)
                (<= k 16))
           (str "State bank must be a number between 0 and 16 inclusively, got: " k)))
-
-;; Fix me
-;; (defn update-state*
-;;   [sm b k v]
-;;   (if (contains? (get-in sm [:states b]) k)
-;;     (let [old-state (sm-b-k->state sm b k)
-;;           state     (assoc old-state k v)
-;;           button-id (sm-b-k->button-id sm b k)
-
-;;           []
-;;           sm        (reduce (fn [r nk]
-;;                               (update-syncs-and-flashers* r nk
-;;           button-id v))
-;;                             sm
-;;                             (sm-bk->nks sm b k))]
-;;       (sm-swap-state sm k state))
-;;     sm))
-
-;; (defn update-state
-;;   "update the state associated with bank b, state key k to value v"
-;;   [state-a b k v]
-;;   (ensure-valid-val! v)
-
-;;   (send state-a update-state* b state-k v))
 
 (defn- add-nk*
   [sm nk]
