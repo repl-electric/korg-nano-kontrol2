@@ -1,4 +1,4 @@
-(ns nano.connected
+(ns nano.connect
   (:require
    [nano.stateful-device :as nksd]
    [nano.state-maps :as nksm]

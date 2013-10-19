@@ -1,9 +1,13 @@
 (ns nano.standalone
-  (:require [nano.stateful-device :as nksd]
-            [nano.state-maps :as nksm]
-            [nano.connected :as nk-conn]
-            [overtone.libs.event :as e]
-            [overtone.osc :as osc]))
+  (:use
+   [overtone.live])
+  (:require
+   [nano.stateful-device :as nksd]
+   [nano.state-maps :as nksm]
+   [nano.connect :as nk-conn]
+   [overtone.libs.event :as e]
+   [overtone.osc :as osc]
+   [clojure.edn :as edn]))
 
 (defonce mixer-init-state (merge (nksd/nk-state-map 0)
                                  {:slider7 0}
@@ -66,25 +70,20 @@
     (nksm/add-state nk-conn/state-maps (nk-bank :master) :m7 mixer-init-state)
     (nksm/add-state nk-conn/state-maps (nk-bank :master) :r7 mixer-init-state)
 
-    ;;(nksm/add-state nk-conn/state-maps 0 "m64-2" :r3 mixer-init-state)
-    ;;(nksm/add-state nk-conn/state-maps 0 "m64-3" :s4 mixer-init-state)
-    ;;(nksm/add-state nk-conn/state-maps 0 "m64-4" :m4 mixer-init-state)
-    ;;(nksm/add-state nk-conn/state-maps 0 "m64-5" :r4 mixer-init-state)
-
     ;; give each nk an initial state
     (doseq [nk nk-conn/nano-kons]
       (nksm/switch-state nk-conn/state-maps nk 0 :s7))))
 
-(defonce out-osc
-  (osc/osc-client "localhost" 4499))
+(defonce nano-kontrol-dev (osc-server 4499))
 
-(e/on-latest-event [:v-nanoKON2]
-                   (fn [m]
-                     (let [{:keys [bank key id val]} m]
-                       (osc/osc-send out-osc "/nk-event/simple" (with-out-str (pr {:bank bank
-                                                                                    :key key
-                                                                                    :id id
-                                                                                    :val val})))
-
-                       ))
-                   ::send-out-nk-events)
+(osc-handle nano-kontrol-dev
+            "/nk-event/simple"
+            (fn [m]
+              (println :event m)
+              (let [payload (edn/read-string (first (:args m)))]
+                (event [:v-nanoKON2
+                        (:bank payload)
+                        (:key payload)
+                        :control-change
+                        (:id payload)]
+                       payload))))
