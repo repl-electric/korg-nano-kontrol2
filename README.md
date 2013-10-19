@@ -16,8 +16,15 @@ You will need to setup your NanoKontrol2 such that software can control all the 
 
     3. Write the scene data (this saves the change to the device)
 
+## Project.clj
+
+```clojure
+[korg-nano-kontrol2 "0.1.0-SNAPSHOT"]
+```
 
 ## Software setup
+
+You have to pass the banks mapping and the for those banks the s/m/r 0-7 mappings.
 
 ```clojure
 (require '[nano-kontrol2.core :as nk2])
