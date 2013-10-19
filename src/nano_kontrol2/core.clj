@@ -17,6 +17,8 @@
    :riffs btn/fast-forward
    :synths btn/rewind})
 
-(defn start! []
-  (nano-kontrol2.machine/register!)
-  (nano-kontrol2.config/setup! cfg banks))
+(defn start!
+  ([] (start! banks cfg))
+  ([banks cfg]
+     (nano-kontrol2.machine/register!)
+     (nano-kontrol2.config/setup! cfg banks)))
