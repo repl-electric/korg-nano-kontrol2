@@ -1,7 +1,7 @@
- (ns nano.timed
-  (:use 
+ (ns nano-kontrol2.timed
+  (:use
    [overtone.helpers.ref])
-  (:require 
+  (:require
    [overtone.music.time :as time]
    [overtone.sc.protocols :as protocols]))
 
