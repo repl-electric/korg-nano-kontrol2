@@ -21,12 +21,15 @@ You will need to setup your NanoKontrol2 such that software can control all the 
 
 In order to push the use of the NanoKontrol some buttons are mapped to do different things.
 
-   * cycle -> Enter select bank mode.
+   * Cycle -> Enter select bank mode.
      * rewind, fastforward, stop, play and record all select a bank.
      * within a bank mode s,m & r buttons highlighted respresent further different states.
-      
 
-What you assign the banks is completely up to you. One example:
+    * Marker right -> Refresh state maps
+    * Marker left  -> ?
+    * Marker SET   -> Force all sync
+
+What you assign the banks to is completely up to you. One example:
 
 ```Clojure
 (defn nk-bank
@@ -34,8 +37,8 @@ What you assign the banks is completely up to you. One example:
   [bank-k]
   (case bank-k
     :master 0    ; record button (bank 0)
-    :m64 2       ; play button (bank 2)
-    :m128 4      ; stop button (bank 4)
-    :riffs 8     ; fast-forward button (bank 8)
+    :monome64 2  ; play button (bank 2)
+    :monome128 4 ; stop button (bank 4)
+    :riffs 8     ; fast-forward button (bank 8) 
     :synths 16)) ; rewind button (bank 16)
 ```
