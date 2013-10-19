@@ -21,7 +21,14 @@ You will need to setup your NanoKontrol2 such that software can control all the 
 
 ```clojure
 (require '[nano-kontrol2.core :as nk2])
-(nk2/start!)
+(use '[nano-kontrol2.config :only [mixer-init-state]])
+
+(def cfg
+  {:synths {:s0 mixer-init-state :s1 mixer-init-state :s2 mixer-init-state :m0 mixer-init-state :m1 mixer-init-state :r0 mixer-init-state}
+   :riffs  {:s0 mixer-init-state :s1 mixer-init-state :m0 mixer-init-state :m1 mixer-init-state}
+   :master {:s7 mixer-init-state :m7 mixer-init-state :r7 mixer-init-state}})
+
+(nk2/start! cfg)
 ```
 
 ## Control
