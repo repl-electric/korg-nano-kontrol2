@@ -28,7 +28,7 @@ You have to pass the button to banks mapping and the for those banks the s/m/r 0
 
 ```clojure
 (require '[nano-kontrol2.core :as nk2])
-(require '[nano-kontrol2.buttons as btn])
+(require '[nano-kontrol2.buttons :as btn])
 (use '[nano-kontrol2.config :only [mixer-init-state]])
 
 (def cfg
@@ -40,7 +40,7 @@ You have to pass the button to banks mapping and the for those banks the s/m/r 0
   {:master btn/record
    :m64    btn/play
    :m128   btn/stop
-   :riffs  btn/fast-forward
+   :riffs btn/fast-forward
    :synths btn/rewind})
 
 (nk2/start! cfg banks)
