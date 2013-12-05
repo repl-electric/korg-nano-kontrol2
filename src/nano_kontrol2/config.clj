@@ -36,7 +36,10 @@
     (do
       (doseq [[bank-name settings] cfg]
         (doseq [[key mixer-state] settings]
-          (nksm/add-state nk-conn/state-maps (nk-bank bank-name) key mixer-state)))
+          (if (sequential? mixer-state)
+            (let [[name state] mixer-state]
+              (nksm/add-state nk-conn/state-maps (nk-bank bank-name) name key mixer-state))
+            (nksm/add-state nk-conn/state-maps (nk-bank bank-name) key mixer-state))))
 
       ;; give each nk an initial state
       (doseq [nk nk-conn/nano-kons]
